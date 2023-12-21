@@ -1,0 +1,248 @@
+$background-image: "images/gif.gif";
+
+//colors
+$background_color1: rgba(10, 85, 245, 0.5);
+$background_color2: rgba(248, 171, 7, 1);
+$text_color: rgba(255, 255, 255, 1);
+
+//text
+$main-text-size: 4.2vh;
+$small-text-size: 1.5vh;
+// $smallest-text-size: 1rem;
+$smallest-text-size: 3vh;
+$projects_list_a_div-text-size: 3vh;
+$line-height: 5vh;
+
+//padding
+$main-text-padding: 1.5vh;
+$small-text-padding: 1vh;
+$skills-listPadding: .2vh;
+$img-padding: 0.2vh;
+$contact-options-div-padding:5vh;
+
+//margin
+$context-margin: auto 0 0 0;
+$skills-margin: 1vh auto;
+$projects_heading-margin: 5vh 0rem;
+$projects_list_a-margin: 0rem 2vh;
+
+//height, width
+$canvas-height: 100vh;
+$canvas-width: 100vw;
+
+$context-height: auto;
+$context-maxHeight: 85vh;
+$context-width: 45vw;
+$context-maxWidth: 50vw;
+
+$text-width: 90%;
+
+$skills-width: auto;
+
+$projects-width: 90%;
+
+$projects_list-width: 90%;
+$projects_list-height: 100%;
+
+$projects-img-height: 12vh;
+$contacts-img-height: 8vh;
+
+//position
+$context-top: 10vh;
+$context-right: -50vw;
+
+$font: "Alkatra-Medium";
+
+@font-face {
+  font-family: $font;
+  src: url("fonts/#{$font}.ttf") format("truetype");
+}
+
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $background_color2;
+    border-radius: 5px;
+  }
+}
+body {
+  font-family: $font, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  line-height: $line-height;
+  overflow-x: hidden;
+}
+
+.canvas {
+  z-index: 1;
+  position: absolute;
+  top: 0rem;
+  height: $canvas-height;
+  width: $canvas-width;
+}
+
+.context {
+  z-index: 2;
+  position: relative;
+  background-color: $background_color1;
+  border-radius: 1%;
+  text-align: center;
+  font-size: $main-text-size;
+  height: $context-height;
+  max-height: $context-maxHeight;
+  width: $context-width;
+  max-width: $context-maxWidth;
+  margin: $context-margin;
+  top: $context-top;
+  right: $context-right;
+  color: $text_color;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+  overflow-x: hidden;
+
+  overflow-y: auto;
+
+  @include scroll;
+
+  .text {
+    padding: $main-text-padding;
+    text-align: center;
+    width: $text-width;
+    margin: auto;
+  }
+
+  .skills {
+    color: $background_color2;
+    padding: $skills-listPadding;
+    display: block;
+    margin: $skills-margin;
+    width: $skills-width;
+  }
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  justify-items: center;
+
+  &_heading {
+    margin: $projects_heading-margin;
+    border-bottom: 0.1rem $background_color2 solid;
+  }
+  &_list {
+    @include scroll;
+    width: $projects_list-width;
+    height: $projects_list-height;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    a {
+      text-decoration: none;
+      margin: $projects_list_a-margin;
+      opacity: 0.8;
+      transition: all 0.5s;
+      img {
+        height: $projects-img-height;
+      }
+      div {
+        font-size: $projects_list_a_div-text-size;
+        color: $text_color;
+      }
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.contact {
+  // color: red;
+  // background-color: red;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  justify-items: center;
+
+  &-options {
+    // background-color: orange;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-items: center;
+    div {
+      justify-items: center;
+      height: auto;
+      padding: $contact-options-div-padding;
+
+      a {
+        text-decoration: none;
+        // background-color: green;
+        color: $text_color;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+        font-size: $smallest-text-size;
+        transition: all 0.5s;
+        display: inline;
+        transition: all 0.5s;
+
+        img {
+          height: $contacts-img-height;
+          filter: invert(100%);
+          transition: all 0.5s;
+        }
+
+        span {
+          // background-color: aqua;
+          display: block;
+        }
+
+        &:hover {
+          color: $background_color2;
+          img {
+            transform: scale(1.1);
+            filter: invert(0%);
+          }
+        }
+      }
+    }
+  }
+
+  .write-email{
+    color: $background_color2;
+    div{
+      font-size: $small-text-size;
+    }
+    span{
+      font-size: $smallest-text-size;
+      display: block;
+    }
+  }
+}
+
+
+.rotate-90 {
+  transform: rotate(90deg);
+  transform-origin: top left;
+  width:auto;
+  height: auto;
+  max-width: 50vh;
+  max-height: 90vw;
+  overflow: auto;
+  position: relative;
+  top:45vh;
+  right:-95vw;
+  font-size: 1rem ;
+}
